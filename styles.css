@@ -12,3 +12,27 @@ body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, 
 #pdf-overlay { backdrop-filter: blur(10px); }
 html { scroll-behavior: smooth; }
 
+/* Hero styles inspired by yannesidibe.com */
+.greetings-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0,1fr));
+  gap: .5rem;
+  margin-bottom: 2rem;
+}
+.greet {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: .15em;
+  color: #94a3b8;
+  font-weight: 700;
+  font-size: .9rem;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .greetings-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+}
+.hero-center { text-align:center; margin-top: 1rem; }
+.hero-name { font-size: clamp(2rem, 6vw, 4rem); font-weight: 800; }
+.heart { color:#10b981; font-weight: 800; }
+.busy-badge { display:inline-block; margin-top:.5rem; color:#e2e8f0; opacity:.8; }
+

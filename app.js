@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectionObserver();
   // If there are hash links, ensure smooth scroll behavior is native; highlight on arrival
   highlightSectionFromHash();
+
+  // Build greetings grid
+  buildGreetings();
 });
 
 function setupNav() {
@@ -129,6 +132,19 @@ function highlightSectionFromHash() {
   const id = location.hash.replace('#', '');
   const el = document.getElementById(id);
   if (el) el.classList.add('visible');
+}
+
+function buildGreetings() {
+  const greetings = ['こんにちは','Здравствуйте','hey','σας γεια','안녕하세요','Hola','Bonjour','Ciao','नमस्ते','مرحبا','Olá','Hallo','Hej','สวัสดี','שלום'];
+  const grid = document.getElementById('greetings-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  greetings.forEach((g) => {
+    const span = document.createElement('span');
+    span.className = 'greet';
+    span.textContent = g;
+    grid.appendChild(span);
+  });
 }
 
 window.navigateToPage = navigateToPage;

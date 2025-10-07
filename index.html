@@ -13,14 +13,12 @@
 <body class="bg-slate-950 text-slate-100 font-sans">
   <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-slate-950/60 border-b border-slate-800">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#page-1" class="text-xl font-bold tracking-tight text-emerald-400">Portfolio</a>
+      <a href="#home" class="text-xl font-bold tracking-tight text-emerald-400">Portfolio</a>
       <div class="hidden md:flex gap-6 text-sm" id="navbar">
-        <a href="#page-1" class="nav-link" data-page="1">Home</a>
-        <a href="#page-2" class="nav-link" data-page="2">About</a>
-        <a href="#page-3" class="nav-link" data-page="3">Projects</a>
-        <a href="#page-4" class="nav-link" data-page="4">Experience</a>
-        <a href="#page-5" class="nav-link" data-page="5">Skills</a>
-        <a href="#page-6" class="nav-link" data-page="6">Contact</a>
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
       <button id="pdf-toggle" class="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-3 py-2 text-slate-900 font-semibold hover:bg-emerald-400 transition">View PDF</button>
     </div>
@@ -41,22 +39,19 @@
   </div>
 
   <main class="pt-24">
-    <section id="page-1" class="page">
+    <section id="home" class="page">
       <div class="container">
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">Home</h1>
-        <p class="mt-4 text-slate-300">PDF Page 1 → Homepage.</p>
-        <div class="mt-6 flex gap-3">
-          <button class="btn-primary" onclick="navigateToPage(2)">About</button>
-          <button class="btn-secondary" onclick="openPDF()">Open PDF</button>
+        <div id="greetings-grid" class="greetings-grid"></div>
+        <div class="hero-center">
+          <h1 class="hero-name">CHIRANJEEV&nbsp;S <span class="heart">• with ❤</span></h1>
+          <span class="busy-badge">quite busy currently</span>
         </div>
       </div>
     </section>
- 
-    <section id="page-2" class="page"><div class="container"><h2 class="section-title">About</h2></div></section>
-    <section id="page-3" class="page"><div class="container"><h2 class="section-title">Projects</h2></div></section>
-    <section id="page-4" class="page"><div class="container"><h2 class="section-title">Experience</h2></div></section>
-    <section id="page-5" class="page"><div class="container"><h2 class="section-title">Skills</h2></div></section>
-    <section id="page-6" class="page"><div class="container"><h2 class="section-title">Contact</h2></div></section>
+
+    <section id="about" class="page"><div class="container"><h2 class="section-title">About</h2></div></section>
+    <section id="work" class="page"><div class="container"><h2 class="section-title">Work</h2></div></section>
+    <section id="contact" class="page"><div class="container"><h2 class="section-title">Contact</h2></div></section>
   </main>
 
   <footer class="py-10 border-t border-slate-800">
