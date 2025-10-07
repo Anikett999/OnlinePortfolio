@@ -1,2 +1,2 @@
 # OnlinePortfolio
-this project has code for 
+this project has code for online portfolio
