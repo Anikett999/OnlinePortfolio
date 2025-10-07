@@ -44,12 +44,63 @@ function openPDF() {
   const overlay = document.getElementById('pdf-overlay');
   if (overlay) overlay.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
+
+  // Try to enter fullscreen on the overlay container for an immersive view
+  const container = overlay;
+  const requestFs = container && (container.requestFullscreen || container.webkitRequestFullscreen || container.msRequestFullscreen);
+  if (requestFs) {
+    try {
+      requestFs.call(container);
+    } catch (e) {
+      // no-op; fullscreen not allowed
+    }
+  }
+
+  // Attempt landscape orientation when supported (mobile/tablets, installed PWA, or user gesture contexts)
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock('landscape').catch(() => {
+      // Some browsers require fullscreen or deny lock; ignore failures gracefully
+    });
+  }
+
+  // Make the iframe fill the screen and hint viewer to fit page width
+  const frame = document.getElementById('pdf-frame');
+  if (frame) {
+    frame.style.height = '100vh';
+    frame.style.width = '100%';
+    try {
+      const base = frame.src.split('#')[0];
+      frame.src = `${base}#view=FitH`;
+    } catch (_) {}
+  }
 }
 
 function closePDF() {
   const overlay = document.getElementById('pdf-overlay');
   if (overlay) overlay.classList.add('hidden');
   document.body.style.overflow = 'auto';
+
+  // Exit fullscreen if we entered it
+  const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
+  if (exitFs && document.fullscreenElement) {
+    try {
+      exitFs.call(document);
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  // Unlock orientation where supported
+  if (screen.orientation && screen.orientation.unlock) {
+    try { screen.orientation.unlock(); } catch (_) {}
+  }
+
+  // Restore iframe sizing
+  const frame = document.getElementById('pdf-frame');
+  if (frame) {
+    frame.style.height = '';
+    frame.style.width = '';
+  }
 }
 
 window.navigateToPage = navigateToPage;
