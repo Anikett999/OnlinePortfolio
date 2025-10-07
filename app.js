@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   setupPDF();
   // Open PDF overlay by default on initial load
   openPDF();
+
+  // Initialize waterfall fade-in on scroll
+  initSectionObserver();
+  // If there are hash links, ensure smooth scroll behavior is native; highlight on arrival
+  highlightSectionFromHash();
 });
 
 function setupNav() {
@@ -24,8 +29,8 @@ function navigateToPage(page) {
   if (page < 1 || page > totalPages) return;
   const oldEl = document.getElementById(`page-${currentPage}`);
   const newEl = document.getElementById(`page-${page}`);
-  if (oldEl) oldEl.classList.remove('active');
-  if (newEl) newEl.classList.add('active');
+  if (oldEl) oldEl.classList.remove('visible');
+  if (newEl) newEl.classList.add('visible');
   document.querySelectorAll('.nav-link').forEach((a) => {
     a.classList.toggle('active', parseInt(a.getAttribute('data-page')) === page);
   });
@@ -103,6 +108,25 @@ function closePDF() {
     frame.style.height = '';
     frame.style.width = '';
   }
+}
+
+function initSectionObserver() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.page').forEach((section) => observer.observe(section));
+}
+
+function highlightSectionFromHash() {
+  if (!location.hash) return;
+  const id = location.hash.replace('#', '');
+  const el = document.getElementById(id);
+  if (el) el.classList.add('visible');
 }
 
 window.navigateToPage = navigateToPage;
