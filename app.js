@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
   setupNav();
   setupPDF();
-  // Open PDF overlay by default on initial load
-  openPDF();
+  // Open PDF overlay by default on initial load (without fullscreen/orientation)
+  const overlay = document.getElementById('pdf-overlay');
+  if (overlay) overlay.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
 
   // Initialize waterfall fade-in on scroll
   initSectionObserver();
@@ -52,7 +54,7 @@ function openPDF() {
   if (overlay) overlay.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 
-  // Try to enter fullscreen on the overlay container for an immersive view
+  // Try to enter fullscreen on user gesture only
   const container = overlay;
   const requestFs = container && (container.requestFullscreen || container.webkitRequestFullscreen || container.msRequestFullscreen);
   if (requestFs) {
@@ -63,7 +65,7 @@ function openPDF() {
     }
   }
 
-  // Attempt landscape orientation when supported (mobile/tablets, installed PWA, or user gesture contexts)
+  // Attempt landscape orientation when supported (user gesture contexts)
   if (screen.orientation && screen.orientation.lock) {
     screen.orientation.lock('landscape').catch(() => {
       // Some browsers require fullscreen or deny lock; ignore failures gracefully
