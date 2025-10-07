@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
   setupNav();
   setupPDF();
+  // Open PDF overlay by default on initial load
+  openPDF();
 });
 
 function setupNav() {
