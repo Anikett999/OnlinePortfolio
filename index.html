@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+  <nav class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-slate-950/60 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#page-1" class="text-xl font-bold tracking-tight text-emerald-400">Portfolio</a>
+      <div class="hidden md:flex gap-6 text-sm" id="navbar">
+        <a href="#page-1" class="nav-link" data-page="1">Home</a>
+        <a href="#page-2" class="nav-link" data-page="2">About</a>
+        <a href="#page-3" class="nav-link" data-page="3">Projects</a>
+        <a href="#page-4" class="nav-link" data-page="4">Experience</a>
+        <a href="#page-5" class="nav-link" data-page="5">Skills</a>
+        <a href="#page-6" class="nav-link" data-page="6">Contact</a>
+      </div>
+      <button id="pdf-toggle" class="inline-flex items-center gap-2 rounded-md bg-emerald-500 px-3 py-2 text-slate-900 font-semibold hover:bg-emerald-400 transition">View PDF</button>
+    </div>
+  </nav>
+
+  <div id="pdf-overlay" class="fixed inset-0 bg-black/80 z-50 hidden">
+    <div class="flex items-center justify-center h-full p-4">
+      <div class="bg-slate-900 rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-hidden">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-semibold">Portfolio PDF</h3>
+          <button id="close-pdf" class="text-slate-400 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <iframe src="./CHIRANJEEV S - Portfolio 2025.pdf" class="w-full h-[70vh] border border-slate-700 rounded"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <main class="pt-24">
+    <section id="page-1" class="page active min-h-screen flex items-center">
+      <div class="container">
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">Home</h1>
+        <p class="mt-4 text-slate-300">PDF Page 1 → Homepage.</p>
+        <div class="mt-6 flex gap-3">
+          <button class="btn-primary" onclick="navigateToPage(2)">About</button>
+          <button class="btn-secondary" onclick="openPDF()">Open PDF</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-2" class="page min-h-screen flex items-center"><div class="container"><h2 class="section-title">About</h2></div></section>
+    <section id="page-3" class="page min-h-screen flex items-center"><div class="container"><h2 class="section-title">Projects</h2></div></section>
+    <section id="page-4" class="page min-h-screen flex items-center"><div class="container"><h2 class="section-title">Experience</h2></div></section>
+    <section id="page-5" class="page min-h-screen flex items-center"><div class="container"><h2 class="section-title">Skills</h2></div></section>
+    <section id="page-6" class="page min-h-screen flex items-center"><div class="container"><h2 class="section-title">Contact</h2></div></section>
+  </main>
+
+  <footer class="py-10 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 text-sm text-slate-400">© <span id="year"></span> Portfolio.</div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
+
